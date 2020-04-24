@@ -47,9 +47,9 @@ function setup(){
 }
 
 function draw(){
-    if(backgroundImg)
+    if(backgroundImg){
         background(backgroundImg);
-    
+    }
         noStroke();
         textSize(35)
         fill("white")
@@ -94,6 +94,8 @@ function mouseReleased(){
 
 function keyPressed(){
     if(keyCode === 32){
+       bird.tragectory = [];
+       Matter.Body.setPosition(bird.body, {x: 200 , y: 50})
        slingshot.attach(bird.body);
     }
 }
@@ -105,11 +107,11 @@ async function getBackgroundImg(){
     var datetime = responseJSON.datetime;
     var hour = datetime.slice(11,13);
     
-    if(hour>=0600 && hour<=1900){
-        bg = "sprites/bg1.png";
+    if(hour >=06 && hour<= 16){
+        bg = "sprites/bg2.jpg";
     }
     else{
-        bg = "sprites/bg2.jpg";
+        bg = "sprites/bg1.png";
     }
 
     backgroundImg = loadImage(bg);
